@@ -10,3 +10,7 @@ Features
 - as above, Click create button between 2 dgvs will open a new form to input data. 
 - click Confirm button to write in database, which will alse update the stock qauntity.
 
+- use Class for all datagridviews settings (color, font, resize, headerstyle, etc)
+- use Void for repeated codes, such as show table (ado.net), executeNonquery funtions.
+- use FastReport to print datagridview and add additional data in A4 documents.
+- click Checkout button to show data on richtextbox (via List <class>).
