@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="04/06/2023 15:07:27" ReportInfo.Modified="04/07/2023 10:04:44" ReportInfo.CreatorVersion="2013.2.5.0">
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlqzP/32u1QtzIsUJqKG+CmmuFVugYyHWAN7nTh+m3nGkC0Sffk/utYaCsYDbNj1ahtRSGsUQWiOE/ej2nMttcayvun3pFkZeSmV20Vwv5nI/tVyrjyg8n0lkj1GWHKmigaeum0htvg90S2IbS0NLn2YreITaJ41IYx2v0MuYUVRRdjenblY04INUcOKEv6g0+A34kUZqynkhrRee1+aZrp0Q==">
+      <TableDataSource Name="YCUST" DataType="System.Int32" Enabled="true" TableName="YCUST">
+        <Column Name="CONO" DataType="System.String"/>
+        <Column Name="NA" DataType="System.String"/>
+        <Column Name="NAME" DataType="System.String"/>
+        <Column Name="ID" DataType="System.String"/>
+        <Column Name="BOSS" DataType="System.String"/>
+        <Column Name="AGENT" DataType="System.String"/>
+        <Column Name="TEL1" DataType="System.String"/>
+        <Column Name="TEL2" DataType="System.String"/>
+        <Column Name="PTEL" DataType="System.String"/>
+        <Column Name="FAX" DataType="System.String"/>
+        <Column Name="IADD" DataType="System.String"/>
+        <Column Name="MEMO" DataType="System.String"/>
+      </TableDataSource>
+      <TableDataSource Name="YFGIODT" DataType="System.Int32" Enabled="true" TableName="YFGIODT">
+        <Column Name="VHNO" DataType="System.String"/>
+        <Column Name="OD" DataType="System.Int16"/>
+        <Column Name="FGNO" DataType="System.String"/>
+        <Column Name="QTY" DataType="System.Int32"/>
+        <Column Name="PRC" DataType="System.Single"/>
+        <Column Name="BATCH" DataType="System.String"/>
+        <Column Name="ORDER1" DataType="System.String"/>
+        <Column Name="NOTE1" DataType="System.String"/>
+      </TableDataSource>
+      <TableDataSource Name="YINVENTORY" DataType="System.Int32" Enabled="true" TableName="YINVENTORY">
+        <Column Name="YYMM" DataType="System.Int16"/>
+        <Column Name="FGNO" DataType="System.String"/>
+        <Column Name="IVQTY" DataType="System.Int32"/>
+        <Column Name="SQTY" DataType="System.Int32"/>
+      </TableDataSource>
+      <TableDataSource Name="YFGMAST" DataType="System.Int32" Enabled="true" TableName="YFGMAST">
+        <Column Name="FGNO" DataType="System.String"/>
+        <Column Name="FGNAME" DataType="System.String"/>
+        <Column Name="CONO" DataType="System.String"/>
+        <Column Name="PRC" DataType="System.Single"/>
+        <Column Name="ZWET" DataType="System.Double"/>
+        <Column Name="NOTE" DataType="System.String"/>
+        <Column Name="IQTY" DataType="System.Int32"/>
+        <Column Name="Cdate" DataType="System.DateTime"/>
+        <Column Name="PICTURE" DataType="System.String"/>
+        <Column Name="YN" DataType="System.Boolean" BindableControl="CheckBox"/>
+      </TableDataSource>
+      <TableDataSource Name="YFGIO" DataType="System.Int32" Enabled="true" TableName="YFGIO">
+        <Column Name="VHNO" DataType="System.String"/>
+        <Column Name="VHDT" DataType="System.Int32"/>
+        <Column Name="CONO" DataType="System.String"/>
+        <Column Name="DC" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+    <Relation Name="YFGIO_YFGIODT" ParentDataSource="YFGIO" ChildDataSource="YFGIODT" ParentColumns="VHNO" ChildColumns="VHNO" Enabled="true"/>
+    <Relation Name="YFGMAST_YFGIODT" ParentDataSource="YFGMAST" ChildDataSource="YFGIODT" ParentColumns="FGNO" ChildColumns="FGNO" Enabled="true"/>
+    <Total Name="Total1" Expression="[YFGIODT.QTY]*[YFGIODT.PRC]" Evaluator="Data2" PrintOn="DataFooter1"/>
+  </Dictionary>
+  <ReportPage Name="Page1">
+    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="37.8">
+      <TextObject Name="Text1" Left="255.15" Top="9.45" Width="94.5" Height="18.9" Text="Inventory" Font="Arial Rounded MT Bold, 12pt"/>
+    </ReportTitleBand>
+    <PageHeaderBand Name="PageHeader1" Top="41.8" Width="718.2" Height="28.35"/>
+    <GroupHeaderBand Name="GroupHeader1" Top="74.15" Width="718.2" Height="58.59" Condition="[YFGIO.VHNO]">
+      <TextObject Name="Text33" Left="207.9" Top="28.35" Width="699.3" Height="30.24" Text="[YCUST.NAME] 1001-1004 " VertAlign="Center" Font="Tahoma, 14.25pt"/>
+      <DataBand Name="Data1" Top="136.74" Width="718.2" Height="75.6" DataSource="YFGIO">
+        <TextObject Name="Text27" Left="18.9" Top="29.45" Width="94.5" Height="18.9" Fill.Color="PeachPuff" Text="進銷編號&#13;&#10;" Font="微軟正黑體, 12pt"/>
+        <TextObject Name="Text28" Left="245.7" Top="29.45" Width="94.5" Height="18.9" Fill.Color="PeachPuff" Text="進銷日期" Font="微軟正黑體, 12pt"/>
+        <TextObject Name="Text29" Left="453.6" Top="29.45" Width="94.5" Height="18.9" Fill.Color="PeachPuff" Text="公司編號" Font="微軟正黑體, 12pt"/>
+        <TextObject Name="Text30" Left="122.85" Top="29.45" Width="94.5" Height="18.9" Fill.Color="255, 255, 205" Text="[YFGIO.VHNO]" Font="微軟正黑體, 12pt"/>
+        <TextObject Name="Text31" Left="349.65" Top="29.45" Width="94.5" Height="18.9" Fill.Color="255, 255, 205" Text="[YFGIO.VHDT]" Font="微軟正黑體, 12pt"/>
+        <TextObject Name="Text32" Left="567" Top="29.45" Width="94.5" Height="18.9" Fill.Color="255, 255, 205" Text="[YFGIO.CONO]" Font="微軟正黑體, 12pt"/>
+        <TextObject Name="Text14" Left="18.9" Top="52.26" Width="122.85" Height="18.9" Border.Lines="All" Border.Color="White" Fill.Color="PaleTurquoise" Text="商品編號" VertAlign="Center" Font="微軟正黑體, 9.75pt"/>
+        <TextObject Name="Text15" Left="368.55" Top="52.26" Width="94.5" Height="18.9" Border.Lines="All" Border.Color="White" Fill.Color="PaleTurquoise" Text="商品單價" HorzAlign="Center" VertAlign="Center" RightToLeft="true" Font="微軟正黑體, 9.75pt"/>
+        <TextObject Name="Text16" Left="491.4" Top="52.26" Width="94.5" Height="18.9" Border.Lines="All" Border.Color="White" Fill.Color="PaleTurquoise" Text="商品數量" HorzAlign="Center" VertAlign="Center" RightToLeft="true" Font="微軟正黑體, 9.75pt"/>
+        <TextObject Name="Text17" Left="151.2" Top="52.26" Width="198.45" Height="18.9" Border.Lines="All" Border.Color="White" Fill.Color="PaleTurquoise" Text="商品名稱" VertAlign="Center" Font="微軟正黑體, 9.75pt"/>
+        <TextObject Name="Text21" Left="604.8" Top="52.26" Width="94.5" Height="18.9" Border.Lines="All" Border.Color="White" Fill.Color="PaleTurquoise" Text="商品金額" HorzAlign="Center" VertAlign="Center" RightToLeft="true" Font="微軟正黑體, 9.75pt"/>
+        <DataBand Name="Data2" Top="216.34" Width="718.2" Height="28.35" DataSource="YFGIODT">
+          <TextObject Name="Text26" Left="604.8" Top="2.58" Width="94.5" Height="18.9" Fill.Color="195, 255, 195" Text="[Round([YFGIODT.QTY]*[YFGIODT.PRC])]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" RightToLeft="true" Font="微軟正黑體, 9.75pt"/>
+          <TextObject Name="Text22" Left="18.9" Top="2.58" Width="122.85" Height="18.9" Fill.Color="195, 255, 195" Text="[YFGIODT.FGNO]" Font="微軟正黑體, 9.75pt"/>
+          <TextObject Name="Text23" Left="151.2" Top="2.58" Width="198.45" Height="18.9" Fill.Color="195, 255, 195" Text="[YFGIODT.YFGMAST.FGNAME]" Font="微軟正黑體, 9.75pt"/>
+          <TextObject Name="Text24" Left="368.55" Top="2.58" Width="103.95" Height="18.9" Fill.Color="195, 255, 195" Text="[YFGIODT.PRC]" RightToLeft="true" Font="微軟正黑體, 9.75pt"/>
+          <TextObject Name="Text25" Left="491.4" Top="2.58" Width="103.95" Height="18.9" Fill.Color="195, 255, 195" Text="[YFGIODT.QTY]" RightToLeft="true" Font="微軟正黑體, 9.75pt"/>
+          <DataFooterBand Name="DataFooter1" Top="248.69" Width="718.2" Height="47.25">
+            <TextObject Name="Text2" Left="576.45" Top="28.35" Width="122.85" Height="18.9" Text="Total: [Total1]" Font="宋体, 9pt"/>
+          </DataFooterBand>
+        </DataBand>
+      </DataBand>
+      <GroupFooterBand Name="GroupFooter1" Top="299.94" Width="718.2" Height="37.8"/>
+    </GroupHeaderBand>
+    <ReportSummaryBand Name="ReportSummary1" Top="341.74" Width="718.2" Height="37.8"/>
+    <PageFooterBand Name="PageFooter1" Top="383.54" Width="718.2" Height="18.9"/>
+  </ReportPage>
+</Report>
