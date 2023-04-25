@@ -474,6 +474,8 @@ namespace SaleBuyStock //忘資料夾名怎改(直改會找不到) //改名後�
             dataGridView0 = new DgvSet(); //類別要先實作化 (老師也放form_load),or null
             dataGridView0.dgvSet(dataGridView2); //原發現有多個dgv1. 老師放開擋
             dataGridView0.dgvSet(dataGridView3); //原發現有多個dgv1
+            
+            OpenTable();
         }
     }
 }
