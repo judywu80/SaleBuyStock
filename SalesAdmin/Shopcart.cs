@@ -95,6 +95,8 @@ namespace SaleBuyStock
             cns = FDouble.cns; //form1的string cns前加public static,右式Form1.cns的cns即消除
             cn = new SqlConnection(cns); //*從form1 OpenT至此
             LbTbName.Text = LbTable;//為啥消失? //原這段沒貼到,adapt.Fill(ds)有問題
+            tbname = LbTable; //原雙檔處未寫form.LbTable= Product; sqs = "SELECT * FROM " + "Product";
+            OpenTable();
 
             dataGridView0 = new DgvSet(); //類別要先實作化 (老師放form_load),or null
             dataGridView0.dgvSet(dataGridView1); //原發現有多個dgv1
@@ -299,7 +301,7 @@ namespace SaleBuyStock
         }
         private void button21_Click(object sender, EventArgs e)
         {
-            string st = "           餐飲清單 \n\n", st1 = "", st0 = "", st2 = "";
+            string st = "           結帳清單 \n\n", st1 = "", st0 = "", st2 = "";
             tqty = 0; tamt = 0; //否則會累計
             foreach (Meals p in lst)  //此為Calss p(之前是int p),搞懂代替Meal obj,有加進的dgv的lst才有
             {   //直接從m泛型抓,快又方便!

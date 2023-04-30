@@ -153,6 +153,8 @@ namespace SaleBuyStock
             cns = FDouble.cns; // //form1的string cns前加public static,右式Form1.cns的cns即消除
             cn = new SqlConnection(cns); //*從form1 OpenT至此
             LbTbName.Text = LbTable;
+            tbname = LbTable;
+            OpenTable();
 
             dataGridView0 = new DgvSet(); //類別要先實作化 (老師也放form_load),or null
             dataGridView0.dgvSet(dataGridView4); //原發現有多個dgv1

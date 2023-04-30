@@ -81,7 +81,6 @@
             this.comboBox1.Size = new System.Drawing.Size(100, 30);
             this.comboBox1.TabIndex = 4;
             this.comboBox1.Text = "選資料表";
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // button1
             // 
@@ -317,9 +316,8 @@
             // 
             this.訂單檔維護ToolStripMenuItem.BackColor = System.Drawing.SystemColors.Info;
             this.訂單檔維護ToolStripMenuItem.Name = "訂單檔維護ToolStripMenuItem";
-            this.訂單檔維護ToolStripMenuItem.Size = new System.Drawing.Size(179, 26);
+            this.訂單檔維護ToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.訂單檔維護ToolStripMenuItem.Text = "訂單檔維護";
-            this.訂單檔維護ToolStripMenuItem.Click += new System.EventHandler(this.訂單檔維護ToolStripMenuItem_Click);
             // 
             // 進銷檔維護ToolStripMenuItem
             // 

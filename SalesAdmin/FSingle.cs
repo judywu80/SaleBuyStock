@@ -23,7 +23,7 @@ namespace SaleBuyStock
         }
         public static string LbTable;//
         DgvSet dataGridView0;        //
-        GetData sqs0;
+        //GetData sqs0;
 
         string cns, sqs, tbname, sqs1;
         SqlConnection cn; SqlCommand cmd;//不直實作參數
@@ -133,15 +133,19 @@ namespace SaleBuyStock
         }
         private void FSingle_Load(object sender, EventArgs e)
         {
-            cns = FDouble.cns; // //form1的string cns前加public static,右式Form1.cns的cns即消除
+            cns = FDouble.cns;  //form1的string cns前加public static,右式Form1.cns的cns即消除
             cn = new SqlConnection(cns); //*從form1 OpenT至此
             LbTbName.Text = LbTable;
+            tbname = LbTable; //從開檔移至此處,因未用動態產生(欄位無法共用)
+            OpenTable(); //
 
             dataGridView0 = new DgvSet(); //類別要先實作化 (老師也放form_load),or null
             dataGridView0.dgvSet(dataGridView4);
         }
+        CRUD sqs0;
         private void button2_Click(object sender, EventArgs e) //欄位如何改洪萬用(?)
         {   //以下已改迴圈, 原sqs1 = "Insert Into "+ tbname + "("+dt.Columns[0].ColumnName+ ","+dt.Columns[1].ColumnName+ ","+dt.Columns[2].ColumnName+","+dt.Columns[3].ColumnName+") Values (@" + dt.Columns[0].ColumnName+ ",@"+dt.Columns[1].ColumnName+",@"+dt.Columns[2].ColumnName+",@"+dt.Columns[3].ColumnName+")";//Insert Into 後面要有空格 //原:必須宣告純量變數"打錯的欄位"
+            ///*
             sqs1 = "Insert Into " + tbname + "(";
             for (int i = 0; i < dt.Columns.Count; i++)
             {
@@ -155,6 +159,11 @@ namespace SaleBuyStock
             }
             sqs1 = sqs1.Remove(sqs1.Length - 1, 1) + ")";  //最後逗點去掉 + 加上最後括號
             //sqs1 += ")";
+            //*/
+
+            //sqs0 = new CRUD();
+            //sqs0.Insert();
+
             ExecuteQue();
             OpenTable();
             //string sqs = "";

@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using System.Data;//
 using System.Data.SqlClient;
 using System.Xml.Linq;
+using System.Security.Cryptography;
 
 namespace SaleBuyStock
 {
@@ -81,26 +82,48 @@ namespace SaleBuyStock
             return ds;  //方法要回傳值(or GetDataT紅字lol)
         }
     }
+
     public class CRUD
     {
-        public DataTable dt;//為啥老師是private
         public string tbname;
-        public string Insert(string sqs1) //
+        public DataTable dt;//原dt為null //為啥老師是private
+        
+        /*public CRUD(DataTable tb)
         {
-            sqs1 = "Insert Into " + tbname + "(";
-            for (int i = 0; i < dt.Columns.Count; i++)
-            {
-                sqs1 += dt.Columns[i].ColumnName + ",";
-            }
-            sqs1 = sqs1.Remove(sqs1.Length - 1, 1);  //最後逗點去掉
-            sqs1 += ") Values (";
-            for (int i = 0; i < dt.Columns.Count; i++)
-            {
-                sqs1 += "@" + dt.Columns[i].ColumnName + ",";
-            }
-            sqs1 = sqs1.Remove(sqs1.Length - 1, 1) + ")";
+            //listData = data;
+            //aed = ae;
+            //tb = dt;
+            dt=tb;
+            tbname = tb.TableName;
+            //FieldType = CreateFtype(dt);
+        }*/
+        //SqlDataAdapter adapt = new SqlDataAdapter(sqs, cn);
+        //public 
+        //DataSet ds = new DataSet();
+        //adapt.Fill(ds);  //置入Dataset ds 
+        //dt = ds.Tables[0];
+        //dt = tbname;
+        public string Insert() //
+        {
+            //dt=tb
+            //tbname= dt.TableName;
+            
+            //dt= new DataTable(); //有進展
 
-            return sqs1;//
+            string sqs0 = "Insert Into " + tbname + "("; //宣告string sqs0
+            for (int i = 0; i < dt.Columns.Count; i++)
+            {
+                sqs0 += dt.Columns[i].ColumnName + ",";
+            }
+            sqs0 = sqs0.Remove(sqs0.Length - 1, 1);  //最後逗點去掉
+            sqs0 += ") Values (";
+            for (int i = 0; i < dt.Columns.Count; i++)
+            {
+                sqs0 += "@" + dt.Columns[i].ColumnName + ",";
+            }
+            sqs0 = sqs0.Remove(sqs0.Length - 1, 1) + ")";
+
+            return sqs0;//
         }
     }
 }
