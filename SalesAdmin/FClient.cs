@@ -22,24 +22,21 @@ namespace SaleBuyStock
         public static string LbTable;//
         DgvSet dataGridView0; //
         string cns, sqs, tbname, sqs1;
-        SqlConnection cn; SqlCommand cmd;//不能直接實作參數
-        DataTable dt; //實體化在btn裡才不會資料一直往下重複
+        SqlConnection cn; SqlCommand cmd;
+        DataTable dt; 
         void OpenTable()
         {   //cn = new SqlConnection(cns)在form_load
             sqs = "SELECT * FROM " + tbname;
-
             SqlDataAdapter adapt = new SqlDataAdapter(sqs, cn);
-            //SqlCommandBuilder scb = new SqlCommandBuilder(adapt); //有採用DataSet，必須有adapt，又採用adapt.Update()
             DataSet ds = new DataSet();
-            adapt.Fill(ds); //改用comBx,原(ds, "Employee"),tname加雙引號 //置入Dataset ds 
+            adapt.Fill(ds); 
             dt = ds.Tables[0];
-            //adapt.Update(dt);
-            dataGridView4.DataSource = dt;//先讀不用bs //洪的OpenTable()似無此行
+            dataGridView4.DataSource = dt;
         }
         void ExecuteQue()
         {
-            cn.Open(); //常見錯誤訊息:'ExecuteNonQuery 必須有開啟與可用的 Connection。連接目前的狀態已關閉。'
-            cmd = new SqlCommand(); //先不指定sqs內容,因可能有多個
+            cn.Open(); 
+            cmd = new SqlCommand(); 
             cmd.Connection = cn;
             cmd.CommandText = sqs1;
             //checkedListBox1.SelectedIndex = 0; //不可用,新增時會強制寫入現金
@@ -57,12 +54,12 @@ namespace SaleBuyStock
             cmd.Parameters["@IADD"].Value = comboBox1.Text + textBox3.Text.Trim();
             cmd.Parameters.Add(new SqlParameter("@EMAIL", SqlDbType.NVarChar));
             cmd.Parameters["@EMAIL"].Value = textBox4.Text.Trim();
-            cmd.ExecuteNonQuery(); //原Customer未設cono為主索引鍵,不會擋重複cono
-            cn.Close();//沒有關會無法連續新增!
+            cmd.ExecuteNonQuery(); 
+            cn.Close();//
         }
         private void button2_Click(object sender, EventArgs e) //
-        {   //cono要填才可新增(其他可不填),or連線有開關問題
-            sqs1 = "Insert Into Customer (CONO,NAME,PAY,IADD,EMAIL) Values (@CONO,@NAME,@PAY,@IADD,@EMAIL)";//"@"變數t-sql寫法?
+        {   
+            sqs1 = "Insert Into Customer (CONO,NAME,PAY,IADD,EMAIL) Values (@CONO,@NAME,@PAY,@IADD,@EMAIL)";
             checkedListBox1.SelectedIndex = 0;//or皆現金/ indx = -1紅字
 
             ExecuteQue();
@@ -93,23 +90,21 @@ namespace SaleBuyStock
                 if (comboBox1.Text + textBox3.Text.Trim() != "") { sqs += "AND IADD like '%" + comboBox1.Text + textBox3.Text.Trim() + "%' "; }//Sql多條件寫法加: And
                 else { sqs += "AND 1=1"; }//選單如何改+該欄位不打資料就可查詢
                 if (textBox4.Text.Trim() != "") { sqs += "AND EMAIL like '%" + textBox4.Text.Trim() + "%' "; }//Sql多條件寫法加: And
-                else { sqs += "AND 1=1"; }//該欄位不打資料就可查詢
+                else { sqs += "AND 1=1"; }
                 MessageBox.Show(sqs);
 
-                cn.Open(); //'ExecuteNonQuery 必須有開啟與可用的 Connection。連接目前的狀態已關閉。'
-                cmd = new SqlCommand(); //先不指定sqs內容,因可能有多個
+                cn.Open(); 
+                cmd = new SqlCommand();
                 cmd.Connection = cn;
-                cmd.CommandText = sqs; //先宣告sqs,再傳給cmd.cmdText (or要按2次才能查)
-                //"查詢"用Reader就好,不用ExecuteNonQery()
+                cmd.CommandText = sqs; 
+
                 SqlDataReader dr = cmd.ExecuteReader();
-                dt = new DataTable(); //實體化在這才不會資料一直往下重複
-                dt.Load(dr);    //載入SqlDataReader的資料  //原dr(from db)有資料,讀db上dt的資料
-                                //dr.Close(); cmd.Dispose(); //似無變化
-                cn.Close(); //*放這裡無誤
-                dataGridView4.DataSource = dt; //為啥Table(應是View?)會自動排(假的嗎),數字&日期也排對?
-                                               //**Ans：DataTable也可以有自動排序，數字&日期也都會排對，如果使用DataView還可以有多欄位排序，及filte功能
+                dt = new DataTable();
+                dt.Load(dr);
+                cn.Close(); //*
+                dataGridView4.DataSource = dt;
             }
-            catch (Exception ex) //try後沒打catch會紅字提醒 //finally不打可以嗎
+            catch (Exception ex) //try後沒打catch會紅字提醒 //finally不打可
             {
                 cn.Close();
                 MessageBox.Show("資料發生錯誤:" + ex.Message);
@@ -125,8 +120,8 @@ namespace SaleBuyStock
             OpenTable();
         }
         private void button5_Click(object sender, EventArgs e)
-        {   //0315可只輸cono直刪 (原同form1要完全一樣才能刪,應因加3欄的Para寫法)
-            sqs1 = "Delete From Customer Where CONO=@CONO";//"@"變數t-sql寫法?
+        {   
+            sqs1 = "Delete From Customer Where CONO=@CONO";
             checkedListBox1.SelectedIndex = 0;//or皆現金/ indx = -1紅字/ cn.Open開關問題
 
             ExecuteQue();
@@ -156,8 +151,8 @@ namespace SaleBuyStock
             tbname = LbTable;
             OpenTable();
 
-            dataGridView0 = new DgvSet(); //類別要先實作化 (老師也放form_load),or null
-            dataGridView0.dgvSet(dataGridView4); //原發現有多個dgv1
+            dataGridView0 = new DgvSet(); //類別要先實作化 
+            dataGridView0.dgvSet(dataGridView4); 
         }
         private void button1_Click(object sender, EventArgs e)
         {

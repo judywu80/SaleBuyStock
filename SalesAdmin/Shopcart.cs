@@ -26,25 +26,23 @@ namespace SaleBuyStock
             InitializeComponent();
         }
         public static string LbTable;//
-        DgvSet dataGridView0; //注意命名 //原少r;重打原綠字(dgv少1)不見
+        DgvSet dataGridView0; //
         public string cns, sqs, tbname, sqs1;
-        SqlConnection cn; SqlCommand cmd;//不能直接實作參數
-        DataTable dt; //實體化在btn裡才不會資料一直往下重複
-        public void OpenTable() //變更簽章(?)
+        SqlConnection cn; SqlCommand cmd;
+        DataTable dt; 
+        public void OpenTable() 
         {   //cn = new SqlConnection(cns)在form_load
             sqs = "SELECT * FROM " + tbname;
             SqlDataAdapter adapt = new SqlDataAdapter(sqs, cn);
-            //SqlCommandBuilder scb = new SqlCommandBuilder(adapt); //有採用DataSet，必須有adapt，又採用adapt.Update()
             DataSet ds = new DataSet();
-            adapt.Fill(ds); //改用comBx,原(ds,"Employee"),tname加雙引號 //置入Dataset ds 
+            adapt.Fill(ds);
             dt = ds.Tables[0];
-            //adapt.Update(dt);*/
-            dataGridView1.DataSource = dt;//先讀不用bs //洪的OpenTable()似無此行
+            dataGridView1.DataSource = dt;
         }
         public void ExecuteQue()
         {
-            cn.Open(); //常見錯誤訊息:'ExecuteNonQuery 必須有開啟與可用的 Connection。連接目前的狀態已關閉。'
-            cmd = new SqlCommand(); //先不指定sqs內容,因可能有多個
+            cn.Open();
+            cmd = new SqlCommand();
             cmd.Connection = cn;
             cmd.CommandText = sqs1;
             cmd.Parameters.Add(new SqlParameter("@fgno", SqlDbType.NVarChar));//
@@ -55,67 +53,63 @@ namespace SaleBuyStock
             cmd.Parameters["@cono"].Value = textBox4.Text.Trim();
             cmd.Parameters.Add(new SqlParameter("@prc", SqlDbType.NVarChar));
             cmd.Parameters["@prc"].Value = int.Parse(textBox2.Text.Trim() == "" ? "0" : textBox2.Text.Trim());
-            cmd.Parameters.Add(new SqlParameter("@zwet", SqlDbType.NVarChar));//
+            cmd.Parameters.Add(new SqlParameter("@zwet", SqlDbType.NVarChar));
             cmd.Parameters["@zwet"].Value = int.Parse(textBox5.Text.Trim() == "" ? "0" : textBox5.Text.Trim());
-            cmd.Parameters.Add(new SqlParameter("@note", SqlDbType.NVarChar));//
+            cmd.Parameters.Add(new SqlParameter("@note", SqlDbType.NVarChar));
             cmd.Parameters["@note"].Value = textBox6.Text.Trim();
             cmd.Parameters.Add(new SqlParameter("@iqty", SqlDbType.NVarChar));//
             cmd.Parameters["@iqty"].Value = int.Parse(textBox7.Text.Trim() == "" ? "0" : textBox7.Text.Trim());
-            cmd.Parameters.Add(new SqlParameter("@cdate", SqlDbType.NVarChar)); //暫把型別date改NVarChar
+            cmd.Parameters.Add(new SqlParameter("@cdate", SqlDbType.NVarChar)); //
             cmd.Parameters["@cdate"].Value = textBox8.Text.Trim();
-            //cmd.Parameters["@cdate"].Value = Convert.ToDateTime(textBox8.Text.Trim() == "" ? "DateTime.Today.ToString()" : textBox8.Text.Trim());//這樣寫不行"DateTime.Today.ToString();"
             cmd.Parameters.Add(new SqlParameter("@picture", SqlDbType.NVarChar));//
             cmd.Parameters["@picture"].Value = textBox9.Text.Trim();
             cmd.Parameters.Add(new SqlParameter("@yn", SqlDbType.NVarChar));//
             cmd.Parameters["@yn"].Value = textBox10.Text.Trim();
-            //cmd.Parameters.Add(new SqlParameter("@iqty", SqlDbType.NVarChar)); //Pay Value這樣寫crud容易有出問題
-            //cmd.Parameters["@iqty"].Value = int.Parse(comboBox1.Text.Trim() == "" ? "0" : comboBox1.Text.Trim());//看反藍,非勾選的! //括號內原數字寫法改選取by fan
-            cmd.ExecuteNonQuery(); //原Customer未設cono為主索引鍵,不會擋重複cono
-            cn.Close();//沒有關會無法連續新增!
+            cmd.ExecuteNonQuery();
+            cn.Close();
         }
-        int n, a, amt,tamt, qty,tqty; //應新增2table所有tb(&label)欄位以便修改,老師範例都有
-        int lst_removeat, er = 0; //ec = 0;
+        int n, a, amt,tamt, qty,tqty;
+        int lst_removeat, er = 0; //ec = 0; //------------------------------------------------------------------
         class Meals //資料庫用原來的(class&List)即可,因同之前在tB(s)寫入 //泛型和類別用於寫入購物車CRUD
         {   
-            public string 商品 { get; set;}// //原m=meal,此類別名
+            public string 商品 { get; set;}//
             public int 價格 { get; set; }
             public string 數量 { get; set; }
-        }   //作業4沒用到泛型,只使用陣列(用找字串方式列印出來)
-        List<string> lst0 = new List<string>() { "7-11", "熊貓", "訂餐" };//如何將ary ait轉進list lst0? 試將ait移到靜態區也無法,or後段需在區域變數里?(前斷留靜態需共用)
+        }   
+        List<string> lst0 = new List<string>() { "7-11", "熊貓", "訂餐" };
         List<Meals>lst=new List<Meals>(); //另新增listBox的泛型(不同個)
-        private void Form1_Load(object sender, EventArgs e)  //listBox資料用於商品CRUD
-        {   //蔡OpenT放這不用按開檔,待研究是否可行
+        private void Form1_Load(object sender, EventArgs e)  
+        {   
             string[] ait = new string[] {"7-11","熊貓","訂餐"}; //a=ary,為寫入lstBx
             listBox1.Items.Clear();
             listBox1.Items.AddRange(ait);
             //int[] aprc = new int[] { 80, 90, 60};
-            string[] aqty=new string[] {"1","2","3"}; //為寫入comBx,如何加入dgv?
+            string[] aqty=new string[] {"1","2","3"}; 
             comboBox1.Items.AddRange(aqty);   //只能加字串嗎?
 
             cns = FDouble.cns; //form1的string cns前加public static,右式Form1.cns的cns即消除
             cn = new SqlConnection(cns); //*從form1 OpenT至此
-            LbTbName.Text = LbTable;//為啥消失? //原這段沒貼到,adapt.Fill(ds)有問題
-            tbname = LbTable; //原雙檔處未寫form.LbTable= Product; sqs = "SELECT * FROM " + "Product";
+            LbTbName.Text = LbTable;//
+            tbname = LbTable; //
             OpenTable();
 
             dataGridView0 = new DgvSet(); //類別要先實作化 (老師放form_load),or null
             dataGridView0.dgvSet(dataGridView1); //原發現有多個dgv1
             dataGridView0.dgvSet(dataGridView5);
         }
-        private void button1_Click(object sender, EventArgs e) //(x?)listBox一定要用泛型lst0
+        private void button1_Click(object sender, EventArgs e) 
         {
             listBox1.DataSource = null;
             lst0.Add(textBox1.Text.Trim()); //金額未設
             listBox1.DataSource = lst0;
         }
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //textBox1.Text = "";
+        {   //textBox1.Text = "";
             if (listBox1.SelectedIndex >= 0)   //若有找到的話
             {
                 textBox1.Text = listBox1.SelectedItem.ToString();  //為更新和刪除須先查詢該物
                 comboBox1.SelectedIndex = 0;  //預設=1(位置0)
-                if (listBox1.SelectedItem.ToString() == "7-11")   //單數item!(打到複數items沒反應)
+                if (listBox1.SelectedItem.ToString() == "7-11")   //單數item(打複數items沒反應)
                     textBox2.Text = "80";
                 else if (listBox1.SelectedItem.ToString() == "熊貓")
                     textBox2.Text = "90";
@@ -129,8 +123,7 @@ namespace SaleBuyStock
         }
         private void button2_Click(object sender, EventArgs e) //update 改完會變第1個
         {
-            n=listBox1.SelectedIndex;
-            //listBox1.Items[listBox1.SelectedIndex] = textBox1.Text; //'已設定 DataSource 屬性時，無法修改項目集合。'
+            n=listBox1.SelectedIndex; //listBox1.Items[listBox1.SelectedIndex] = textBox1.Text; //'已設定 DataSource 屬性時，無法修改項目集合。'
             lst0[n] = textBox1.Text.Trim();
             listBox1.DataSource = null;
             listBox1.DataSource = lst0;
@@ -139,8 +132,7 @@ namespace SaleBuyStock
         {
             if (listBox1.SelectedIndex >= 0)
             {
-                lst0.RemoveAt(listBox1.SelectedIndex);
-                //listBox1.Items.RemoveAt(listBox1.SelectedIndex);  //已設定DataSource屬性時，無法修改項目集合。(?)
+                lst0.RemoveAt(listBox1.SelectedIndex); //listBox1.Items.RemoveAt(listBox1.SelectedIndex);  //已設定DataSource屬性時，無法修改項目集合。(?)
                 listBox1.DataSource = null; //有加以下2句,tB資料才會不見
                 listBox1.DataSource = lst0; //lst有問題,因不同List<>lst0
             }
@@ -160,13 +152,13 @@ namespace SaleBuyStock
             string st = "     餐飲清單 \n", st1="", st0="",st2="";
             tqty = 0;tamt = 0; //否則會累計
             foreach(Meals p in lst)  //此為Calss p(之前是int p),搞懂代替Meal obj,有加進的dgv的lst才有
-            {   //直接從m泛型抓,快又方便!
+            {   //直接從m泛型抓,快又方便
                 qty = Convert.ToInt32(p.數量);
                 tqty += qty;
                 amt = p.價格 * Convert.ToInt32(p.數量);
                 tamt += amt;
                 st += $"{p.商品 } {p.價格} * {p.數量} = {amt} \n";
-            } //改成作業4比較漂亮
+            } 
             st2 = "------------------\n";
             st0=$"總數量 = {tqty} 份 \n"; //2個$符號不好加
             st1 = $"總金額 = {tamt} 元\n ** 謝謝光臨！**";
@@ -312,8 +304,8 @@ namespace SaleBuyStock
                 st += $"{p.商品} {p.價格} * {p.數量} = {amt} \n";
             } //改成作業4比較漂亮
             st2 = "------------------------------------\n";
-            st0 = $"總數量 = {tqty} 份 \n"; //2個$符號不好加
-            st1 = $"總金額 = {tamt} 元\n\n       ** 謝謝光臨！**";
+            st0 = $" 總數量 = {tqty} 份 \n"; //2個$符號不好加
+            st1 = $" 總金額 = {tamt} 元\n\n       ** 謝謝光臨！**";
             richTextBox3.Text = st + st2 + st0 + st1;
         }
         private void button22_Click(object sender, EventArgs e)
@@ -327,12 +319,12 @@ namespace SaleBuyStock
         }
         private void button16_Click(object sender, EventArgs e)
         {
-            tbname = LbTable; //原雙檔處未寫form.LbTable= Product; sqs = "SELECT * FROM " + "Product";
-            OpenTable(); //建類別OpenTable()供各form用(洪沒建,似double不同法開檔)
+            tbname = LbTable; 
+            OpenTable(); 
         }
         private void listBox1_DoubleClick(object sender, EventArgs e) //點2下可新增至dgv,但數量只有1
         {
-            dataGridView1.DataSource = null; //下行有無更快預設寫入方法?(洪i)
+            dataGridView1.DataSource = null; 
             lst.Add(new Meals() { 商品 = listBox1.SelectedItem.ToString(), 價格 = int.Parse(textBox2.Text), 數量 = comboBox1.SelectedItem.ToString() }); //textBox3.Text = comboBox1.SelectedItem.ToString();不須tB3,可直接打在本式;同tB1
             dataGridView1.DataSource = lst;
         }
@@ -349,11 +341,17 @@ namespace SaleBuyStock
 
             if (e.RowIndex >= 0)
             {
-                //textBox1.Text = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
                 textBox2.Text = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
                 textBox3.Text = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
                 textBox1.Text = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
                 textBox7.Text = dataGridView1.Rows[e.RowIndex].Cells[6].Value.ToString(); //
+
+                textBox4.Text = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
+                textBox5.Text = dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString();
+                textBox6.Text = dataGridView1.Rows[e.RowIndex].Cells[5].Value.ToString();
+                textBox7.Text = dataGridView1.Rows[e.RowIndex].Cells[6].Value.ToString();
+                textBox8.Text = dataGridView1.Rows[e.RowIndex].Cells[7].Value.ToString();
+                textBox9.Text = dataGridView1.Rows[e.RowIndex].Cells[8].Value.ToString(); //待優化
                 comboBox1.Text = "1";//comboBox1.Text.Trim();//dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
             }
 
@@ -367,7 +365,6 @@ namespace SaleBuyStock
             dataGridView1.DataSource = null;    //Reset dataGridView1
             dataGridView1.DataSource = lst;*/ //這段沒註解會干擾
 
-            //sqs1 = "Delete From Product Where fgNAME=@fgNAME";//原寫成FGNO
             sqs1 = "Delete From " + tbname + " Where " + dt.Columns[0].ColumnName + "=@" + dt.Columns[0].ColumnName + "";
             ExecuteQue();
             OpenTable();
@@ -381,26 +378,26 @@ namespace SaleBuyStock
             }
             //分隔線
             try
-            {   //原sql語法有問題,用debug+F10顯示sqs內容值去找 //無效資料行: 沒改到tabe名
-                sqs = "Select * From Product Where "; //下sql條件,注意where後要空1格,否則與下行字串相連,吃不到指令
+            {   
+                sqs = "Select * From Product Where "; 
                 comboBox1.Text = "";//查詢時不下任何字串條件,含"縣市". //cono只打1,其他所有條件皆出現(cLB未好)
-                if (textBox1.Text.Trim() != "") { sqs += "fgname like '%" + textBox1.Text.Trim() + "%' "; }//Sql原寫法: like '%a%'
-                else { sqs += "1=1"; }//該欄位不打資料就可查詢 //再確認查詢範圍
-                if (textBox2.Text.Trim() != "") { sqs += "AND prc like '%" + textBox2.Text.Trim() + "%' "; }//Sql多條件寫法加: And
-                else { sqs += "AND 1=1"; }//該欄位不打資料就可查詢
-                if (comboBox1.Text.Trim() != "") { sqs += "AND iqty like '%" + comboBox1.Text.Trim() + "%' "; }//Sql多條件寫法加: And
-                else { sqs += "AND 1=1"; }//選單如何改+該欄位不打資料就可查詢
+                if (textBox1.Text.Trim() != "") { sqs += "fgname like '%" + textBox1.Text.Trim() + "%' "; }
+                else { sqs += "1=1"; }
+                if (textBox2.Text.Trim() != "") { sqs += "AND prc like '%" + textBox2.Text.Trim() + "%' "; }
+                else { sqs += "AND 1=1"; }
+                if (comboBox1.Text.Trim() != "") { sqs += "AND iqty like '%" + comboBox1.Text.Trim() + "%' "; }
+                else { sqs += "AND 1=1"; }
                 MessageBox.Show(sqs);
 
-                cn.Open(); //'ExecuteNonQuery 必須有開啟與可用的 Connection。連接目前的狀態已關閉。'
-                cmd = new SqlCommand(); //先不指定sqs內容,因可能有多個
+                cn.Open(); 
+                cmd = new SqlCommand(); 
                 cmd.Connection = cn;
-                cmd.CommandText = sqs; //先宣告sqs,再傳給cmd.cmdText (or要按2次才能查)
-                SqlDataReader dr = cmd.ExecuteReader(); //"查詢"用Reader就好,不用ExecuteNonQery()
-                dt = new DataTable(); //實體化在這才不會資料一直往下重複
-                dt.Load(dr);    //載入SqlDataReader的資料  //原dr(from db)有資料,讀db上dt的資料 //dr.Close(); cmd.Dispose();似無變化
-                cn.Close(); //*放這裡無誤
-                dataGridView1.DataSource = dt; //為啥Table(應是View?)會自動排(假的嗎),數字&日期也排對? **Ans：DataTable也可以有自動排序，數字&日期也都會排對，如果使用DataView還可以有多欄位排序，及filte功能
+                cmd.CommandText = sqs; 
+                SqlDataReader dr = cmd.ExecuteReader(); 
+                dt = new DataTable(); 
+                dt.Load(dr);   
+                cn.Close(); //*
+                dataGridView1.DataSource = dt; 
             }
             catch (Exception ex) //try後沒打catch會紅字提醒 //finally不打可
             { cn.Close(); MessageBox.Show("資料發生錯誤:" + ex.Message);}
