@@ -62,6 +62,9 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.button11 = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.textBox5 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -81,6 +84,7 @@
             this.comboBox1.Size = new System.Drawing.Size(100, 30);
             this.comboBox1.TabIndex = 4;
             this.comboBox1.Text = "選資料表";
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // button1
             // 
@@ -316,7 +320,7 @@
             // 
             this.訂單檔維護ToolStripMenuItem.BackColor = System.Drawing.SystemColors.Info;
             this.訂單檔維護ToolStripMenuItem.Name = "訂單檔維護ToolStripMenuItem";
-            this.訂單檔維護ToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.訂單檔維護ToolStripMenuItem.Size = new System.Drawing.Size(179, 26);
             this.訂單檔維護ToolStripMenuItem.Text = "訂單檔維護";
             // 
             // 進銷檔維護ToolStripMenuItem
@@ -392,17 +396,19 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(640, 98);
+            this.label4.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label4.Location = new System.Drawing.Point(630, 97);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(41, 15);
+            this.label4.Size = new System.Drawing.Size(51, 22);
             this.label4.TabIndex = 31;
             this.label4.Text = "進/銷";
             // 
             // textBox4
             // 
+            this.textBox4.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.textBox4.Location = new System.Drawing.Point(687, 94);
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(100, 25);
+            this.textBox4.Size = new System.Drawing.Size(100, 30);
             this.textBox4.TabIndex = 32;
             // 
             // timer1
@@ -412,6 +418,7 @@
             // 
             // statusStrip1
             // 
+            this.statusStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1});
@@ -429,11 +436,48 @@
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(181, 22);
             this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
             // 
+            // button11
+            // 
+            this.button11.BackColor = System.Drawing.SystemColors.Info;
+            this.button11.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.button11.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.button11.Image = ((System.Drawing.Image)(resources.GetObject("button11.Image")));
+            this.button11.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button11.Location = new System.Drawing.Point(634, 44);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(130, 39);
+            this.button11.TabIndex = 34;
+            this.button11.Text = "進銷存匯總";
+            this.button11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button11.UseVisualStyleBackColor = false;
+            this.button11.Click += new System.EventHandler(this.button11_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.label5.Location = new System.Drawing.Point(704, 15);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(83, 15);
+            this.label5.TabIndex = 35;
+            this.label5.Text = "Process name";
+            // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(634, 12);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(64, 25);
+            this.textBox5.TabIndex = 36;
+            this.textBox5.Text = "10004";
+            // 
             // FDouble
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(898, 659);
+            this.Controls.Add(this.textBox5);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.button11);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.label4);
@@ -506,6 +550,9 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.Button button11;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox textBox5;
     }
 }
 

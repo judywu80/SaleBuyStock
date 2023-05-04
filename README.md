@@ -10,16 +10,19 @@
 導覽 All Features
 - Mmenu shows forms including shopcart, orders & purchase, stock, and client.
 - can CRUD (create, read, update, delete) directly via input data in textboxes.
+- click Checkout button to show data on richtextbox (via List <class>) in form Shopcart.
 
 - **Please click parent-datagridview first to Relation child-datagridview.**
 - as above, Click create button between 2 dgvs will open a new form to input data. (*berfore click RUD button, pls click the child-datagridview first)
 - click Confirm button to write in database, which will alse update the stock qauntity. (*when update, need to click update btn before confirm)
 
-- use Class for all datagridviews settings (color, font, resize, headerstyle, etc)
+資料處理 Data Report
 - use FastReport to print datagridview and add additional data in A4 documents.
-- click Checkout button to show data on richtextbox (via List <class>).
+- use class ExportData to let sale-buy-stock data to save into Excel. 
 
 優化功能 Advanced Features
+- use Class for all datagridviews settings (color, font, resize, headerstyle, etc)
 - Connection string setting uniform: no need to revise it in each form. (*open via github no need to attach database in SSMS)
 - use Void for repeated codes, such as show table (ado.net), executeNonquery funtions.
 - in Form FSingle.cs, using for loop instead of adding field one by one.
+

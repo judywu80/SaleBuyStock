@@ -25,8 +25,12 @@ namespace SaleBuyStock
         DgvSet dataGridView0; //
         public string sqs, sqs1;
         SqlConnection cn; SqlCommand cmd;
-        DataTable dt; 
+        DataTable dt;
         //FDetail參數在下面
+        int[] CellWidth; //資料處理-excel參數
+        int tl;
+        ExportData exportdata;
+
         public void OpenTable() //改public供form2使用
         {
             sqs = "SELECT * FROM " + comboBox1.Text;//**crud完dgv即可顯示
@@ -358,7 +362,7 @@ namespace SaleBuyStock
             op = "D";
             if (comboBox1.Text == "YODR")
             {
-                sqs1 = "Delete from Yodrdt where fgno=@fgno"; //刪order1會全被刪掉
+                sqs1 = "Delete from Yodrdt where fgno=@fgno"; //刪order1會全被刪掉(?)
 
                 cn = new SqlConnection(cns);
                 cn.Open(); 
@@ -435,12 +439,74 @@ namespace SaleBuyStock
         {
             toolStripStatusLabel1.Text = "  系統時間：" + DateTime.Now.ToString("yyyy/MM/dd  hh:mm:ss");
         }
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            OpenTable();
+        }
+        private void CreateCellWidth()                      //計算欄寬於陣列及總欄寬
+        {
+            CellWidth = new int[dataGridView3.ColumnCount];
+            tl = 0;
+            for (int i = 0; i < dataGridView3.ColumnCount; i++)
+            {
+                CellWidth[i] = dataGridView3.Columns[i].Width;
+                tl = tl + CellWidth[i];                     //總欄寬
+            }
+        }
+        private void button11_Click(object sender, EventArgs e)
+        {
+            string s1, st1;
+            //s1 = "10004";
+            s1 = textBox5.Text;
+            //if (GetData.InputBox("進銷匯總", "資料年月:", ref s1) == DialogResult.OK)
+            {
+                //label5.Text = s1 + " 進 銷 匯 總 寫 入 作 業";
+                label5.Text ="進銷匯總 寫入作業";
+                st1 = "; WITH A5_1 (成品編號, 成品名稱, 期初數, 進貨數, 銷貨數) ";
+                st1 += " AS(  ";
+                st1 += "SELECT I.FGNO AS 成品編號, FGNAME AS 成品名稱, IVQTY AS 期初, 0 AS 進貨, 0 AS 銷貨 ";
+                st1 += "FROM YINVENTORY I INNER JOIN  YFGMAST AS F ON I.FGNO = F.FGNO ";
+                st1 += "WHERE YYMM + 1 = " + s1;
+                st1 += " UNION ALL ";
+                st1 += "SELECT  D.FGNO AS 成品編號, FGNAME AS 成品名稱, 0 AS 期初, IIF(DC = 'D', QTY, 0) AS 進貨, ";
+                st1 += " IIF(DC = 'C', QTY, 0) AS 銷貨  FROM YFGIO AS M INNER JOIN ";
+                st1 += "YFGIODT AS D ON M.VHNO = D.VHNO INNER JOIN ";
+                st1 += "YFGMAST AS F ON D.FGNO = F.FGNO  WHERE LEFT(VHDT, 5) = " + s1 + " )  ";
+
+                st1 += "SELECT 成品編號, 成品名稱, SUM(期初數) AS 期初數, SUM(進貨數) AS 進貨數, SUM(銷貨數) AS 銷貨數,";
+                st1 += "SUM(期初數) + SUM(進貨數) - SUM(銷貨數) as 期末數 ";
+                st1 += " FROM A5_1 ";
+                st1 += "GROUP BY 成品編號, 成品名稱 ";
+                st1 += "ORDER BY 成品編號";
+
+                sqs =  st1;
+                cn = new SqlConnection(cns);//從btn開檔移至此方法
+                SqlDataAdapter adapt = new SqlDataAdapter(sqs, cn); //有用sqs
+                DataSet ds = new DataSet();
+                adapt.Fill(ds); //改用comBx,原(ds, "Employee"),tname加雙引號 //置入Dataset ds 
+                dt = ds.Tables[0];
+                dataGridView3.DataSource = dt;
+                //tb1 = getdata.GetTableData(st1);
+                //dataGridView3.DataSource = tb1;
+                //dgv.dgvSet(dgvQry);
+                //ftype = getdata.CreateFtypeArray(tb1);   //取 tb 資料型態當 ftype[]
+                //dgv.dgv_Align(dgvQry, tb1, ftype);
+                //CreateCellWidth();
+            }
+            CreateCellWidth();                              //計算欄寬於陣列及總欄寬
+            for (int i = 0; i < CellWidth.Length; i++)      //A4 Size：寬約:88-90
+            {
+                CellWidth[i] = (int)(88 * CellWidth[i] * 1.0 / tl);        //寬度分配調整(數值長度改比率)                        
+            }
+            exportdata = new ExportData(); //從form_load移至此
+            exportdata.Dgv_To_Excel(dataGridView3, label5.Text, CellWidth);     //執行該類別方法Dgv_To_Excel()
+        }
         private void Form1_Load(object sender, EventArgs e)
         {
             cns = "Data Source=.\\sql2019; Database= YVMENUC1;" + //**改主機名**&資料庫(若無法改db名,重開即可)
             //      "User ID= sa; PWD= ";       //**改密碼**
                   "Trusted_Connection= True";  //改信任方式登入
-            comboBox1.SelectedIndex = 0;//執行後直接顯示資料表,不用手動選
+            comboBox1.SelectedIndex = 1;//執行後直接顯示資料表,不用手動選
 
             dataGridView0 = new DgvSet(); //類別要先實作化 (老師也放form_load),or null
             dataGridView0.dgvSet(dataGridView2); //原發現有多個dgv1. 老師放開擋

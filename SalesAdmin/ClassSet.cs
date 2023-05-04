@@ -9,12 +9,13 @@ using System.Data;//
 using System.Data.SqlClient;
 using System.Xml.Linq;
 using System.Security.Cryptography;
+using Excel=Microsoft.Office.Interop.Excel; //需加入該參考  //Com指向Excel.exe
 
 namespace SaleBuyStock
 {
     public class DgvSet
     {
-        public void dgvSet(DataGridView dataGridView0) //至少1存取子(?)
+        public void dgvSet(DataGridView dataGridView0) //至少1存取子(建構子)
         {   //原dataGridView為dataGridView1
             DataGridViewCellStyle columnHeaderStyle = new DataGridViewCellStyle();
             dataGridView0.EnableHeadersVisualStyles = false;
@@ -33,7 +34,7 @@ namespace SaleBuyStock
             dataGridView0.AutoResizeColumns();    //欄寬自動調整
         }
     }
-    //如何變類別公用, 存取子(建構子)? 變數改屬性 //看許程式寫法
+    //如何變類別公用, 存取子(建構子) 變數改屬性 //看許程式寫法
     public class GetData
     {   //變數改屬性
         public string sqs {get;set;}
@@ -124,6 +125,65 @@ namespace SaleBuyStock
             sqs0 = sqs0.Remove(sqs0.Length - 1, 1) + ")";
 
             return sqs0;//
+        }
+    }
+    class ExportData //將(進銷存)資料匯出到EXCEL
+    {
+        public bool Dgv_To_Excel(DataGridView Dgv, string TitleName, int[] CellWidth)
+        {
+            if (Dgv.Rows.Count == 0)
+                return false;
+            //建立Excel
+            Excel.Application excel = new Excel.Application();
+            excel.Application.Workbooks.Add(true);
+            excel.Visible = true;
+            excel.Cells[1, 1] = TitleName;
+            //建立欄位名稱
+            for (int i = 0; i < Dgv.ColumnCount; i++)
+            {
+                excel.Cells[2, i + 1] = Dgv.Columns[i].HeaderText;
+                excel.Cells[2, i + 1].ColumnWidth = CellWidth[i];
+            }
+
+            Excel.Range rng1 = (Excel.Range)excel.Range[excel.Cells[1, 1], excel.Cells[1, Dgv.ColumnCount]].Cells;
+            Excel.Range rng2 = (Excel.Range)excel.Range[excel.Cells[2, 1], excel.Cells[2, Dgv.ColumnCount]].Cells;
+            Excel.Range rng3 = (Excel.Range)excel.Range[excel.Cells[3, 1], excel.Cells[Dgv.RowCount + 1, Dgv.ColumnCount]].Cells; //r+1連Title
+            rng1.Merge(0); //儲存格合併動作
+            rng1.Font.Color = System.Drawing.Color.Blue;
+            rng1.HorizontalAlignment = Excel.XlVAlign.xlVAlignCenter;
+            rng1.Font.Size = 14;
+            rng1.Interior.Color = System.Drawing.Color.FromArgb(175, 225, 255);      //TiTle
+
+            rng2.Interior.Color = System.Drawing.Color.FromArgb(153, 255, 204);      //欄位
+            rng3.Interior.Color = System.Drawing.Color.FromArgb(255, 255, 204);      //內容   
+            rng2.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
+            rng2.Borders.Color = System.Drawing.Color.FromArgb(0, 0, 255);
+            rng2.Font.Color = System.Drawing.Color.FromArgb(0, 0, 255);
+
+            rng3.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
+            rng3.Borders.Color = System.Drawing.Color.FromArgb(0, 0, 255);
+
+            //填入資料內容
+            for (int i = 0; i < Dgv.RowCount - 1; i++)
+            {
+                for (int j = 0; j < Dgv.ColumnCount; j++)
+                {
+                    if (Dgv[j, i].Value != null)
+                    {
+                        if (Dgv[j, i].ValueType == typeof(string))
+                        {
+                            excel.Cells[i + 3, j + 1] = "'" + Dgv[j, i].Value.ToString();
+                        }
+                        else
+                        {
+                            excel.Cells[i + 3, j + 1] = Dgv[j, i].Value.ToString();
+                        }
+                    }
+                    else excel.Cells[i + 3, j + 1] = "";
+                }
+            }
+            //Sheet.Columns.EntireColumn.AutoFit();     //自動調整列寬
+            return true;
         }
     }
 }
