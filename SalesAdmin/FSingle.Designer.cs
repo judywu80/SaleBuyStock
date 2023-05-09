@@ -53,7 +53,7 @@
             // 
             this.LbTbName.AutoSize = true;
             this.LbTbName.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.LbTbName.Location = new System.Drawing.Point(583, 61);
+            this.LbTbName.Location = new System.Drawing.Point(584, 48);
             this.LbTbName.Name = "LbTbName";
             this.LbTbName.Size = new System.Drawing.Size(103, 22);
             this.LbTbName.TabIndex = 104;
@@ -64,7 +64,7 @@
             this.button1.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
             this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(587, 25);
+            this.button1.Location = new System.Drawing.Point(588, 12);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(84, 33);
             this.button1.TabIndex = 103;
@@ -80,7 +80,7 @@
             this.button3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
             this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button3.Location = new System.Drawing.Point(122, 25);
+            this.button3.Location = new System.Drawing.Point(123, 12);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(91, 33);
             this.button3.TabIndex = 102;
@@ -95,7 +95,7 @@
             this.button5.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.button5.Image = ((System.Drawing.Image)(resources.GetObject("button5.Image")));
             this.button5.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button5.Location = new System.Drawing.Point(341, 26);
+            this.button5.Location = new System.Drawing.Point(342, 13);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(91, 32);
             this.button5.TabIndex = 100;
@@ -110,7 +110,7 @@
             this.button4.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.button4.Image = ((System.Drawing.Image)(resources.GetObject("button4.Image")));
             this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button4.Location = new System.Drawing.Point(219, 26);
+            this.button4.Location = new System.Drawing.Point(220, 13);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(116, 32);
             this.button4.TabIndex = 99;
@@ -125,7 +125,7 @@
             this.button2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
             this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button2.Location = new System.Drawing.Point(25, 25);
+            this.button2.Location = new System.Drawing.Point(26, 12);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(91, 32);
             this.button2.TabIndex = 98;
@@ -137,7 +137,7 @@
             // textBox3
             // 
             this.textBox3.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.textBox3.Location = new System.Drawing.Point(111, 124);
+            this.textBox3.Location = new System.Drawing.Point(112, 111);
             this.textBox3.Margin = new System.Windows.Forms.Padding(4);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(119, 30);
@@ -147,7 +147,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label3.Location = new System.Drawing.Point(259, 126);
+            this.label3.Location = new System.Drawing.Point(260, 113);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(78, 22);
@@ -157,7 +157,7 @@
             // textBox4
             // 
             this.textBox4.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.textBox4.Location = new System.Drawing.Point(352, 125);
+            this.textBox4.Location = new System.Drawing.Point(353, 112);
             this.textBox4.Margin = new System.Windows.Forms.Padding(4);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(103, 30);
@@ -167,7 +167,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label4.Location = new System.Drawing.Point(25, 127);
+            this.label4.Location = new System.Drawing.Point(26, 114);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(78, 22);
@@ -177,7 +177,7 @@
             // textBox2
             // 
             this.textBox2.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.textBox2.Location = new System.Drawing.Point(352, 75);
+            this.textBox2.Location = new System.Drawing.Point(353, 62);
             this.textBox2.Margin = new System.Windows.Forms.Padding(4);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(143, 30);
@@ -187,7 +187,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label2.Location = new System.Drawing.Point(257, 78);
+            this.label2.Location = new System.Drawing.Point(258, 65);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(78, 22);
@@ -197,7 +197,7 @@
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.textBox1.Location = new System.Drawing.Point(111, 73);
+            this.textBox1.Location = new System.Drawing.Point(112, 60);
             this.textBox1.Margin = new System.Windows.Forms.Padding(4);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(119, 30);
@@ -207,7 +207,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label1.Location = new System.Drawing.Point(25, 78);
+            this.label1.Location = new System.Drawing.Point(26, 65);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(78, 22);
@@ -217,11 +217,11 @@
             // dataGridView4
             // 
             this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView4.Location = new System.Drawing.Point(21, 183);
+            this.dataGridView4.Location = new System.Drawing.Point(22, 170);
             this.dataGridView4.Name = "dataGridView4";
             this.dataGridView4.RowHeadersWidth = 51;
             this.dataGridView4.RowTemplate.Height = 27;
-            this.dataGridView4.Size = new System.Drawing.Size(650, 295);
+            this.dataGridView4.Size = new System.Drawing.Size(650, 362);
             this.dataGridView4.TabIndex = 87;
             // 
             // button7
@@ -230,7 +230,7 @@
             this.button7.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.button7.Image = ((System.Drawing.Image)(resources.GetObject("button7.Image")));
             this.button7.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button7.Location = new System.Drawing.Point(555, 136);
+            this.button7.Location = new System.Drawing.Point(556, 123);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(79, 32);
             this.button7.TabIndex = 105;
@@ -248,7 +248,7 @@
             "開新報表",
             "預覽列印",
             "報表設計"});
-            this.comboBox1.Location = new System.Drawing.Point(555, 98);
+            this.comboBox1.Location = new System.Drawing.Point(556, 85);
             this.comboBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(125, 31);
@@ -259,7 +259,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(907, 561);
+            this.ClientSize = new System.Drawing.Size(776, 561);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.LbTbName);

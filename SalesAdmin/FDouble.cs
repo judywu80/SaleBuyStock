@@ -501,6 +501,10 @@ namespace SaleBuyStock
             exportdata = new ExportData(); //從form_load移至此
             exportdata.Dgv_To_Excel(dataGridView3, label5.Text, CellWidth);     //執行該類別方法Dgv_To_Excel()
         }
+        private void 訂單檔維護ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            comboBox1.Text = "YODR";
+        }
         private void Form1_Load(object sender, EventArgs e)
         {
             cns = "Data Source=.\\sql2019; Database= YVMENUC1;" + //**改主機名**&資料庫(若無法改db名,重開即可)

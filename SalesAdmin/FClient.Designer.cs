@@ -53,11 +53,11 @@
             // dataGridView4
             // 
             this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView4.Location = new System.Drawing.Point(21, 183);
+            this.dataGridView4.Location = new System.Drawing.Point(21, 156);
             this.dataGridView4.Name = "dataGridView4";
             this.dataGridView4.RowHeadersWidth = 51;
             this.dataGridView4.RowTemplate.Height = 27;
-            this.dataGridView4.Size = new System.Drawing.Size(821, 295);
+            this.dataGridView4.Size = new System.Drawing.Size(1014, 381);
             this.dataGridView4.TabIndex = 0;
             this.dataGridView4.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView4_CellContentClick);
             // 
@@ -124,7 +124,7 @@
             // textBox4
             // 
             this.textBox4.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.textBox4.Location = new System.Drawing.Point(86, 135);
+            this.textBox4.Location = new System.Drawing.Point(631, 95);
             this.textBox4.Margin = new System.Windows.Forms.Padding(4);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(199, 30);
@@ -221,7 +221,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label5.Location = new System.Drawing.Point(17, 140);
+            this.label5.Location = new System.Drawing.Point(562, 100);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(52, 22);
@@ -262,6 +262,7 @@
             // 
             this.LbTbName.AutoSize = true;
             this.LbTbName.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.LbTbName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.LbTbName.Location = new System.Drawing.Point(571, 48);
             this.LbTbName.Name = "LbTbName";
             this.LbTbName.Size = new System.Drawing.Size(103, 22);
@@ -272,7 +273,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(885, 519);
+            this.ClientSize = new System.Drawing.Size(1047, 559);
             this.Controls.Add(this.LbTbName);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.button3);
