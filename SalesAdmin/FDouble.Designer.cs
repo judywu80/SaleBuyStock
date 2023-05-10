@@ -286,7 +286,7 @@
             // 
             this.客戶資料表ToolStripMenuItem.BackColor = System.Drawing.SystemColors.Info;
             this.客戶資料表ToolStripMenuItem.Name = "客戶資料表ToolStripMenuItem";
-            this.客戶資料表ToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.客戶資料表ToolStripMenuItem.Size = new System.Drawing.Size(189, 26);
             this.客戶資料表ToolStripMenuItem.Text = "(廠)客資料表";
             this.客戶資料表ToolStripMenuItem.Click += new System.EventHandler(this.客戶資料表ToolStripMenuItem_Click);
             // 
@@ -294,14 +294,14 @@
             // 
             this.產品資料表ToolStripMenuItem.BackColor = System.Drawing.SystemColors.Info;
             this.產品資料表ToolStripMenuItem.Name = "產品資料表ToolStripMenuItem";
-            this.產品資料表ToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.產品資料表ToolStripMenuItem.Size = new System.Drawing.Size(189, 26);
             this.產品資料表ToolStripMenuItem.Text = "產品資料表";
             this.產品資料表ToolStripMenuItem.Click += new System.EventHandler(this.產品資料表ToolStripMenuItem_Click);
             // 
             // 盤點檔維護ToolStripMenuItem
             // 
             this.盤點檔維護ToolStripMenuItem.Name = "盤點檔維護ToolStripMenuItem";
-            this.盤點檔維護ToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.盤點檔維護ToolStripMenuItem.Size = new System.Drawing.Size(189, 26);
             this.盤點檔維護ToolStripMenuItem.Text = "盤點檔維護";
             this.盤點檔維護ToolStripMenuItem.Click += new System.EventHandler(this.盤點檔維護ToolStripMenuItem_Click);
             // 
@@ -320,14 +320,14 @@
             // 
             this.訂單檔維護ToolStripMenuItem.BackColor = System.Drawing.SystemColors.Info;
             this.訂單檔維護ToolStripMenuItem.Name = "訂單檔維護ToolStripMenuItem";
-            this.訂單檔維護ToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.訂單檔維護ToolStripMenuItem.Size = new System.Drawing.Size(179, 26);
             this.訂單檔維護ToolStripMenuItem.Text = "訂單檔維護";
             this.訂單檔維護ToolStripMenuItem.Click += new System.EventHandler(this.訂單檔維護ToolStripMenuItem_Click);
             // 
             // 進銷檔維護ToolStripMenuItem
             // 
             this.進銷檔維護ToolStripMenuItem.Name = "進銷檔維護ToolStripMenuItem";
-            this.進銷檔維護ToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.進銷檔維護ToolStripMenuItem.Size = new System.Drawing.Size(179, 26);
             this.進銷檔維護ToolStripMenuItem.Text = "進銷檔維護";
             this.進銷檔維護ToolStripMenuItem.Click += new System.EventHandler(this.進銷檔維護ToolStripMenuItem_Click);
             // 

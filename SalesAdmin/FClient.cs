@@ -44,13 +44,10 @@ namespace SaleBuyStock
             cmd.Parameters["@CONO"].Value = textBox1.Text.Trim();
             cmd.Parameters.Add(new SqlParameter("@NAME", SqlDbType.NVarChar));
             cmd.Parameters["@NAME"].Value = textBox2.Text.Trim();
-            cmd.Parameters.Add(new SqlParameter("@PAY", SqlDbType.NVarChar)); //Pay Value這樣寫crud容易有出問題
+            cmd.Parameters.Add(new SqlParameter("@PAY", SqlDbType.NVarChar)); 
             //MessageBox.Show($"{checkedListBox1.Items[checkedListBox1.SelectedIndex]}");
-            //MessageBox.Show($"{checkedListBox1.SelectedIndices}"); //複數試不出來
-            //foreach (var p in checkedListBox1.SelectedIndices) {
-            //    MessageBox.Show($"{checkedListBox1.SelectedIndices}");}
-            cmd.Parameters["@PAY"].Value = checkedListBox1.Items[checkedListBox1.SelectedIndex];//看反藍,非勾選的! //括號內原數字寫法改選取by fan
-            cmd.Parameters.Add(new SqlParameter("@IADD", SqlDbType.NVarChar)); //Aaron用複選,fan用foreach
+            cmd.Parameters["@PAY"].Value = checkedListBox1.Items[checkedListBox1.SelectedIndex];
+            cmd.Parameters.Add(new SqlParameter("@IADD", SqlDbType.NVarChar));
             cmd.Parameters["@IADD"].Value = comboBox1.Text + textBox3.Text.Trim();
             cmd.Parameters.Add(new SqlParameter("@EMAIL", SqlDbType.NVarChar));
             cmd.Parameters["@EMAIL"].Value = textBox4.Text.Trim();
@@ -69,27 +66,18 @@ namespace SaleBuyStock
         private void button3_Click(object sender, EventArgs e)
         {   //查詢
             try
-            {   //原sql語法有問題,用debug+F10顯示sqs內容值去找 //無效資料行: 沒改到tabe名
+            {   
                 sqs = "Select * From Customer Where "; //下sql條件,注意where後要空1格,否則與下行字串相連,吃不到指令
-                //checkedListBox1.GetItemText = ""; checkedListBox.??=false
-                //checkedListBox1.SelectedIndex = 0; //如何設定 //radio btn才是單選,類作業4,書7-23,3個rbtn共用事件valueChanged,用Convert.ToString(x)物件轉值,就可寫入sql
-                /*foreach (int i in checkedListBox1.CheckedIndices)
-                { checkedListBox1.SetItemCheckState(i, CheckState.Unchecked); }*/
-                comboBox1.Text = "";//查詢時不下任何字串條件,含"縣市". //cono只打1,其他所有條件皆出現(cLB未好)
+                //checkedListBox1.GetItemText = "";
+                comboBox1.Text = "";//查詢時不下任何字串條件,含"縣市". 
                 if (textBox1.Text.Trim() != "") { sqs += "CONO like '%" + textBox1.Text.Trim() + "%' "; }//Sql原寫法: like '%a%'
-                else { sqs += "1=1"; }//該欄位不打資料就可查詢 //再確認查詢範圍
+                else { sqs += "1=1"; }//該欄位不打資料就可查詢
                 if (textBox2.Text.Trim() != "") { sqs += "AND NAME like '%" + textBox2.Text.Trim() + "%' "; }//Sql多條件寫法加: And
-                else { sqs += "AND 1=1"; }//該欄位不打資料就可查詢
-                //if (checkedListBox1.Items[checkedListBox1.SelectedIndex].ToString() != "") { sqs += "AND PAY like '%" + checkedListBox1.Items[checkedListBox1.SelectedIndex] + "%' "; }//Sql多條件寫法加: And
-                //if (checkedListBox1.Items[checkedListBox1.SelectedIndex].ToString() != "") { sqs += "AND PAY like '%" + checkedListBox1.Items[checkedListBox1.SelectedIndex] + "%' "; }//Sql多條件寫法加: And
-                //else { sqs += "AND 1=1"; }//如何該欄位不勾資料就可查詢?
-                
-                //if (checkedListBox1 != null) { sqs += $"and pay like'%{checkedListBox1.CheckedItems[0]}%'"; }
-                //else { sqs+="and 1=1";}
+                else { sqs += "AND 1=1"; }
 
                 if (comboBox1.Text + textBox3.Text.Trim() != "") { sqs += "AND IADD like '%" + comboBox1.Text + textBox3.Text.Trim() + "%' "; }//Sql多條件寫法加: And
-                else { sqs += "AND 1=1"; }//選單如何改+該欄位不打資料就可查詢
-                if (textBox4.Text.Trim() != "") { sqs += "AND EMAIL like '%" + textBox4.Text.Trim() + "%' "; }//Sql多條件寫法加: And
+                else { sqs += "AND 1=1"; }
+                if (textBox4.Text.Trim() != "") { sqs += "AND EMAIL like '%" + textBox4.Text.Trim() + "%' "; }
                 else { sqs += "AND 1=1"; }
                 MessageBox.Show(sqs);
 

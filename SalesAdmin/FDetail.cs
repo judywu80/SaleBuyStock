@@ -65,7 +65,7 @@ namespace SaleBuyStock
         //SqlConnection cn;
         private void button2_Click(object sender, EventArgs e)
         {
-            FDouble f1 = (FDouble)Owner; //讓f1資料在f2也可使用(?)
+            FDouble f1 = (FDouble)Owner; //讓f1資料在f2也可使用
             try
             {
                 if (f1.op == "U") //確定鈕共用CRU
